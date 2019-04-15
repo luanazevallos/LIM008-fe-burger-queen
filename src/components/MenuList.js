@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import { menu } from '../menu.json';
+// import { menu } from '../menu.json';
 
 class MenuList extends Component {
   constructor () {
     super();
     this.state = {
-      menu,
+      menu: [],
       options: "desayuno"
     };
+  }
+
+  componentDidMount() {
+    fetch('https://raw.githubusercontent.com/luanazevallos/LIM008-fe-burger-queen/develop/src/menu.json')
+      .then(res => res.json())
+      .then((json) => {
+        this.setState({
+          menu: json,
+        });
+      });
   }
 
   handleSubmit = (e) => {
@@ -23,9 +33,22 @@ class MenuList extends Component {
     console.log(value, name);
     this.setState({
       title: value,
-      quantity: 1
+      quantity: 1,
+      price: name
     });
+    // this.setState({
+    //   quantity:  this.state.menu.filter((elemento, i) => {
+    //     return elemento.title === value
+    //   }).quantity
+    // });
   }
+
+  // handleInputChange = (menuActual) => {
+  //   this.setState({
+  //     menu: [...this.state.menu, menuActual],
+  //   })
+  //   console.log(this.state.menu)
+  // }
 
   mostrarMenuElegido = (e) => {
     const {value} = e.target;
@@ -43,6 +66,7 @@ class MenuList extends Component {
               <button
               className = "btn boton"
               value = {menuIndividual.title}
+              name= {menuIndividual.quantity}
               onClick={this.handleInputChange}
               >
               {menuIndividual.title}
@@ -54,7 +78,6 @@ class MenuList extends Component {
     })
     return (
       <div className="card">
-      {console.log(this.state)}
         <div>
           <button
               className = "btn btn-primary"

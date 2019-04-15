@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
-import { pedidos } from './pedidos.json';
+// import { pedidos } from './pedidos.json';
 
 // subcomponents
 import MenuList from './components/MenuList.js';
 import Navbar from './components/Navbar.js';
 
-
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      pedidos
+      // menu: [],
+      pedidos:[],
+      // options: ''
     }
   }
+
+  componentDidMount() {
+    fetch('https://raw.githubusercontent.com/luanazevallos/LIM008-fe-burger-queen/develop/src/menu.json')
+      .then(res => res.json())
+      .then((json) => {
+        this.setState({
+          menu: json,
+        });
+      });
+  }
+  
 
   removeTodo = (index) => {
     this.setState({
@@ -22,6 +34,7 @@ class App extends Component {
       })
     });
   }
+
 
   handleAddTodo = (todo) => {
     this.setState({
@@ -36,15 +49,27 @@ class App extends Component {
             <tr>
               <th scope="row">{pedido.title}</th>
               <td>{pedido.quantity}
-              {/* <button >
+              <button 
+              onClick={() => {
+                pedido.quantity += 1;
+                this.setState({
+                  pedidos: [...this.state.pedidos],
+                })
+              }}>
               +
               </button>
-              <button >
+              <button 
+              onClick={() => {
+                pedido.quantity -= 1;
+                this.setState({
+                  pedidos: [...this.state.pedidos],
+                })
+              }}>
               -
-              </button> */}
+              </button>
               </td>
               <td  onClick={this.removeTodo.bind(this, i)}>Eliminar</td>
-              <td>@mdo</td>
+              <td>{pedido.quantity*pedido.price}</td>
             </tr>
           </tbody>
 
@@ -88,3 +113,5 @@ class App extends Component {
 }
 
 export default App;
+
+
