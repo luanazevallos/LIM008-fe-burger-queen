@@ -11,19 +11,19 @@ class Pedidos extends Component {
         }
     
     }
-    removeTodo = (index) => {
-        this.setState({
-          pedidos: this.state.pedidos.filter((e, i) => {
-            return i !== index
-          })
-        });
-    }
+    // removeTodo = (index) => {
+    //     this.setState({
+    //       pedidos: this.state.pedidos.filter((e, i) => {
+    //         return i !== index
+    //       })
+    //     });
+    // }
     
-    handleAddTodo = (todo) => {
-        this.setState({
-          pedidos: [...this.state.pedidos, todo],
-        })
-    }
+    // handleAddTodo = (todo) => {
+    //     this.setState({
+    //       pedidos: [...this.state.pedidos, todo],
+    //     })
+    // }
   
     render() {
         const pedidos = this.state.pedidos.map((pedido, i) => {

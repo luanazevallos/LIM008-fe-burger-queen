@@ -6,6 +6,7 @@ import { pedidos } from './pedidos.json';
 import MenuList from './components/MenuList.js';
 import Navbar from './components/Navbar.js';
 
+
 class App extends Component {
   constructor() {
     super();
@@ -31,20 +32,22 @@ class App extends Component {
   render() {
     const pedidos = this.state.pedidos.map((pedido, i) => {
       return (
-        <div className="col-md-12" key={i}>
-          <div className="card mt-3">
-            <div className="card-title text-center">
-              <h3>{pedido.title}</h3>
-            </div>
-            <div className="">
-              <button
-                className="btn btn-danger"
-                onClick={this.removeTodo.bind(this, i)}>
-                Eliminar
+          <tbody key={i}>
+            <tr>
+              <th scope="row">{pedido.title}</th>
+              <td>{pedido.quantity}
+              {/* <button >
+              +
               </button>
-            </div>
-          </div>
-        </div>
+              <button >
+              -
+              </button> */}
+              </td>
+              <td  onClick={this.removeTodo.bind(this, i)}>Eliminar</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+
       )
     });
 
@@ -61,9 +64,20 @@ class App extends Component {
               <MenuList onAddTodo={this.handleAddTodo}></MenuList>
             </div>
 
-            <div className="col-md-4">
-              <div className="row">
-                {pedidos}
+            <div className="col-md-4" >
+              <div className="row col-md-12">
+                 <table className="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Producto</th>
+                      <th scope="col">Cantidad</th>
+                      <th scope="col">Eliminar</th>
+                      <th scope="col">Subtotal</th>
+                    </tr>
+                  </thead>
+                  {pedidos}
+                </table>
+
               </div>
             </div>
           </div>
