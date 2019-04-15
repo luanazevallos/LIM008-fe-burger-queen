@@ -20,36 +20,6 @@ class MenuList extends Component {
       });
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.onAddTodo(this.state);
-    this.setState({
-      title: ''
-    });
-  }
-
-  handleInputChange = (e) => {
-    const {value, name} = e.target;
-    console.log(value, name);
-    this.setState({
-      title: value,
-      quantity: 1,
-      price: name
-    });
-    // this.setState({
-    //   quantity:  this.state.menu.filter((elemento, i) => {
-    //     return elemento.title === value
-    //   }).quantity
-    // });
-  }
-
-  // handleInputChange = (menuActual) => {
-  //   this.setState({
-  //     menu: [...this.state.menu, menuActual],
-  //   })
-  //   console.log(this.state.menu)
-  // }
-
   mostrarMenuElegido = (e) => {
     const {value} = e.target;
     console.log(value, );
@@ -66,8 +36,7 @@ class MenuList extends Component {
               <button
               className = "btn boton"
               value = {menuIndividual.title}
-              name= {menuIndividual.quantity}
-              onClick={this.handleInputChange}
+              onClick={() => {this.props.onAddTodo({ ...menuIndividual })}}
               >
               {menuIndividual.title}
               </button>
@@ -94,15 +63,12 @@ class MenuList extends Component {
               Resto del dia
           </button>
         </div>
-        <form onSubmit={this.handleSubmit} className="card-body mt-10">
+        
          
-          <div className="form-group mt-4">
-            {menu}
-          </div>
-          {/* <button type="submit" className="btn btn-primary">
-            Save
-          </button> */}
-        </form>
+        <div className="form-group mt-4">
+          {menu}
+        </div>
+
       </div>
     )
   }

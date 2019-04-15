@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-// import { pedidos } from './pedidos.json';
 
 // subcomponents
 import MenuList from './components/MenuList.js';
@@ -25,7 +24,6 @@ class App extends Component {
         });
       });
   }
-  
 
   removeTodo = (index) => {
     this.setState({
@@ -35,8 +33,8 @@ class App extends Component {
     });
   }
 
-
   handleAddTodo = (todo) => {
+    console.log(todo)
     this.setState({
       pedidos: [...this.state.pedidos, todo],
     })
@@ -44,6 +42,7 @@ class App extends Component {
 
   render() {
     const pedidos = this.state.pedidos.map((pedido, i) => {
+      console.log(pedidos)
       return (
           <tbody key={i}>
             <tr>
