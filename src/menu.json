@@ -10,7 +10,8 @@
     "id": 2,
     "title": "Café con leche",
     "category": "desayuno",
-    "quantity": 7
+    "quantity": 1,
+    "price": 7
   },
   {
     "id": 3,
