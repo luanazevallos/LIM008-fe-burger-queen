@@ -29,7 +29,7 @@ class MenuList extends Component {
   }
 
   render() {
-    const menu = this.state.menu.filter(item => item.category === this.state.options).map((menuIndividual, i)=>{
+      const menu = this.state.menu.filter(item => item.category === this.state.options).map((menuIndividual, i)=>{
       return(
         <div className="col-md-8" key={i}>
             <div className="card-title text-center">
